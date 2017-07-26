@@ -1,0 +1,25 @@
+{
+  "name": "ucs",
+  "version": "0.0.2",
+  "description": "UCS - Universal Chat System. Bringing Developers Together!",
+  "main": "server.js",
+  "dependencies": {
+    "ws": "^3.0.0",
+    "time-stamp": "^2.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UniversalChatSystem/UCS-Server.git"
+  },
+  "author": "HittmanA, eDroiid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UniversalChatSystem/UCS/issues"
+  },
+  "homepage": "https://UniversalChatSystem.github.io",
+}
