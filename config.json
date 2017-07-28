@@ -1,6 +1,7 @@
 {
 	"server": {
 		"port": 8080,
-		"username": "Server"
+		"username": "Server",
+		"key": "cj5n20bmr000087j111kipcyo"
 	}
 }
