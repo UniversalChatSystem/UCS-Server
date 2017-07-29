@@ -1,17 +1,17 @@
 var config         = require("./config.json"),
+    https          = require("https");
     port           = config["server"]["port"],
     serverUsername = config["server"]["username"],
-    WebSocket      = require('ws'), 
-    wss            = new WebSocket.Server({port: port}),
-    timestamp      = require('time-stamp');
+    WebSocket      = require('ws'),
+    ws             = require('ws').Server,
+    timestamp      = require('time-stamp'),
+    fs             = require('fs');
 
 const chalk = require('chalk');
 
 /////////////////////////////////////////////////////////////////////
 
-log("Server Connection Established. Listening on port %s", port);
-
-function log(message, data){
+var log = function(message, data){
 	var TimeStamp = timestamp('[HH:mm:ss]');
   	var format = chalk.cyan(TimeStamp + " " + chalk.white(message));
   	if(data){
@@ -21,6 +21,22 @@ function log(message, data){
   	console.log(format);
   	return;
 }
+
+var options = {
+  key: fs.readFileSync('./certs/u-c-s.gq.key'),
+  cert: fs.readFileSync('./certs/u-c-s.gq.pem')
+};
+
+var a = https.createServer(options, function (req, res) {
+  res.writeHead(200);
+  res.end("hello world\n");
+}).listen(port);
+
+log("Server Connection Established. Listening on port %s", port);
+
+var wss = new ws({
+  server: a
+});
 
 wss.on('connection', function(socket) {
 	socket.id = connection.getId();
